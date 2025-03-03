@@ -11,7 +11,7 @@ def make_cc_level_pack_from_json(level_data):
         ccLevel.level_number = level["level_number"]
         ccLevel.time = level["time"]
         ccLevel.num_chips = level["chip_number"]
-        ccLevel.upper_layer = level["map"]
+        ccLevel.upper_layer = level["upperLayer"]
         print(ccLevel.upper_layer)
         if level["title"] != None:
             ccLevel.add_field(cclass.CCMapTitleField(level["title"]))
@@ -31,7 +31,7 @@ def make_cc_level_pack_from_json(level_data):
     return level_pack
 
 
-input_json_file = "data/dc3_cc1.json"
+input_json_file = "data/dc3_levelPack.json"
 with open(input_json_file, "r") as file:  #Load your custom JSON file
     level_data = json.load(file)     
 
@@ -42,5 +42,6 @@ level_pack = make_cc_level_pack_from_json(level_data) #Convert JSON data to CCLe
 print(level_pack)
 
 
-output = "dc3_cc1.dat" #Save converted data to DAT file
+output = "dc3_levelPack.dat" #Save converted data to DAT file
 ccdat.write_cc_level_pack_to_dat(level_pack, output)
+print("yes")
